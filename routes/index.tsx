@@ -7,19 +7,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Fresh App</title>
+        <title>Fresh Character Builder</title>
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md">
-        <img
-          src="/logo.svg"
-          class="w-32 h-32"
-          alt="the fresh logo: a sliced lemon dripping with juice"
-        />
-        <p class="my-6">
-          Welcome to `fresh`. Try updating this message in the
-          ./routes/index.tsx file, and refresh.
-        </p>
-        <Counter count={count} />
+      <div>
+        <div class="text-4xl text-center">Fresh Character Builder</div>
+        <p class="block bg-red-100 text-center">13th Age</p>
+        <p class="block bg-yellow-100 text-center">Dungeons and Dragons 5E</p>
+        <p class="block bg-green-100 text-center">Forbidden Lands</p>
       </div>
     </>
   );
