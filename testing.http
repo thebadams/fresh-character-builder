@@ -1,0 +1,13 @@
+### GET /api/classes/
+GET http://127.0.0.1:8000/api/classes/
+
+### POST /api/classes/
+POST http://127.0.0.1:8000/api/classes
+Content-Type: application/json
+{
+	"name": "Gravitron"
+}
+
+### GET /api/classes/[name]
+
+GET http://127.0.0.1:8000/api/classes/barabarian
