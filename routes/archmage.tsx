@@ -1,61 +1,37 @@
 import { useReducer } from "preact/hooks";
 import Input from "../islands/Input.tsx";
 import IArchmageCharacter from "../types/IArchmageCharacter.ts";
+import {
+  ArchmageContext,
+  currentCharacter as CharacterState,
+  defaultCharacter,
+} from "../contexts/archmageContext.tsx";
 
-type ActionType = {
-  type: "CHANGE_NAME";
-  value: string;
-};
-
-export const reducer = (state: IArchmageCharacter, action: ActionType) => {
-  switch (action.type) {
-    case "CHANGE_NAME":
-      return {
-        ...state,
-        name: action.value,
-      };
-    default:
-      return state;
-  }
-};
-
+const [character, setCharacter] = CharacterState;
 export default function ArchmagePage() {
-  const [currentCharacter, dispatch] = useReducer(reducer, {
-    name: "Valar the Oathsmith",
-    class: "Paladin",
-    level: 1,
-    description:
-      `A Tall Dwarf, with a long beard and hair of a dark brown color. Has emerald eyes that flash as he fights with his warhammer. Carries the symbol of the Zia, with many symbols denoting his devotion to Dusk`,
-    abilities: {
-      strength: 10,
-      dexterity: 10,
-      constitution: 10,
-      intelligence: 10,
-      wisdom: 10,
-      charisma: 10,
-    },
-    playerName: "Brian Adams",
-  });
+  //const [currentCharacter, dispatch] = reducerValues;
   return (
     <>
-      <p>NAME: {currentCharacter.name}</p>
-      <p>CLASS: {currentCharacter.class}</p>
-      <p>LEVEL: {currentCharacter.level}</p>
-      <p>ABILITIES</p>
-      <ul>
-        <li>STRENGTH: {currentCharacter.abilities.strength}</li>
-        <li>DEXTERITY: {currentCharacter.abilities.dexterity}</li>
-        <li>CONSTITUTION: {currentCharacter.abilities.constitution}</li>
-        <li>INTELLIGENCE: {currentCharacter.abilities.intelligence}</li>
-        <li>WISDOM: {currentCharacter.abilities.wisdom}</li>
-        <li>CHARISMA: {currentCharacter.abilities.charisma}</li>
-      </ul>
-      <p>DESCRIPTION: {currentCharacter.description}</p>
-      <p>PLAYER NAME: {currentCharacter.playerName}</p>
+      <ArchmageContext.Provider value={[character, setCharacter]}>
+        <p>NAME: {character.name}</p>
+        <p>CLASS: {character.class}</p>
+        <p>LEVEL: {character.level}</p>
+        <p>ABILITIES</p>
+        <ul>
+          <li>STRENGTH: {character.abilities.strength}</li>
+          <li>DEXTERITY: {character.abilities.dexterity}</li>
+          <li>CONSTITUTION: {character.abilities.constitution}</li>
+          <li>INTELLIGENCE: {character.abilities.intelligence}</li>
+          <li>WISDOM: {character.abilities.wisdom}</li>
+          <li>CHARISMA: {character.abilities.charisma}</li>
+        </ul>
+        <p>DESCRIPTION: {character.description}</p>
+        <p>PLAYER NAME: {character.playerName}</p>
 
-      <div>
-        <Input currentCharacter={currentCharacter} name="name"></Input>
-      </div>
+        <div>
+          {/* <Input character={character} name="name" /> */}
+        </div>
+      </ArchmageContext.Provider>
     </>
   );
 }
