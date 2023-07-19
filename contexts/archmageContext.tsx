@@ -1,7 +1,7 @@
-import { useState } from "preact/hooks";
-import { ArchmageReducer } from "../utils/ArchmageReducer.ts";
+import { Dispatch, useContext, useReducer } from "preact/hooks";
+import { ActionType, ArchmageReducer } from "../utils/ArchmageReducer.ts";
 import IArchmageCharacter from "../types/IArchmageCharacter.ts";
-import { createContext } from "preact";
+import { ComponentChildren, createContext } from "preact";
 
 export const defaultCharacter: IArchmageCharacter = {
   name: "Valar the Oathsmith",
@@ -19,6 +19,25 @@ export const defaultCharacter: IArchmageCharacter = {
   },
   playerName: "Brian Adams",
 };
-const currentCharacter = useState(defaultCharacter);
 
-export const ArchmageContext = createContext(currentCharacter);
+type ArchmageContextProps = {
+  children: ComponentChildren;
+};
+
+export const ArchmageContext = createContext<
+  [IArchmageCharacter, Dispatch<ActionType> | undefined]
+>([defaultCharacter, undefined]);
+export default function ProvideArchmageContext(props: ArchmageContextProps) {
+  const [currentCharacter, dispatch] = useReducer(
+    ArchmageReducer,
+    defaultCharacter,
+  );
+
+  return (
+    <ArchmageContext.Provider value={[currentCharacter, dispatch]} {...props} />
+  );
+}
+
+export const useArchmageContext = () => {
+  return useContext(ArchmageContext);
+};

@@ -3,35 +3,35 @@ import Input from "../islands/Input.tsx";
 import IArchmageCharacter from "../types/IArchmageCharacter.ts";
 import {
   ArchmageContext,
-  currentCharacter as CharacterState,
   defaultCharacter,
+  useArchmageContext,
 } from "../contexts/archmageContext.tsx";
+import ProvideArchmageContext from "../contexts/archmageContext.tsx";
 
-const [character, setCharacter] = CharacterState;
 export default function ArchmagePage() {
-  //const [currentCharacter, dispatch] = reducerValues;
+  const [currentCharacter, dispatch] = useArchmageContext();
   return (
     <>
-      <ArchmageContext.Provider value={[character, setCharacter]}>
-        <p>NAME: {character.name}</p>
-        <p>CLASS: {character.class}</p>
-        <p>LEVEL: {character.level}</p>
+      <ProvideArchmageContext>
+        <p>NAME: {currentCharacter.name}</p>
+        <p>CLASS: {currentCharacter.class}</p>
+        <p>LEVEL: {currentCharacter.level}</p>
         <p>ABILITIES</p>
         <ul>
-          <li>STRENGTH: {character.abilities.strength}</li>
-          <li>DEXTERITY: {character.abilities.dexterity}</li>
-          <li>CONSTITUTION: {character.abilities.constitution}</li>
-          <li>INTELLIGENCE: {character.abilities.intelligence}</li>
-          <li>WISDOM: {character.abilities.wisdom}</li>
-          <li>CHARISMA: {character.abilities.charisma}</li>
+          <li>STRENGTH: {currentCharacter.abilities.strength}</li>
+          <li>DEXTERITY: {currentCharacter.abilities.dexterity}</li>
+          <li>CONSTITUTION: {currentCharacter.abilities.constitution}</li>
+          <li>INTELLIGENCE: {currentCharacter.abilities.intelligence}</li>
+          <li>WISDOM: {currentCharacter.abilities.wisdom}</li>
+          <li>CHARISMA: {currentCharacter.abilities.charisma}</li>
         </ul>
-        <p>DESCRIPTION: {character.description}</p>
-        <p>PLAYER NAME: {character.playerName}</p>
+        <p>DESCRIPTION: {currentCharacter.description}</p>
+        <p>PLAYER NAME: {currentCharacter.playerName}</p>
 
         <div>
-          {/* <Input character={character} name="name" /> */}
+          <Input currentCharacter={currentCharacter} name="name" />
         </div>
-      </ArchmageContext.Provider>
+      </ProvideArchmageContext>
     </>
   );
 }

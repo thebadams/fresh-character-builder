@@ -1,6 +1,6 @@
 import IArchmageCharacter from "../types/IArchmageCharacter.ts";
 
-type ActionType = {
+export type ActionType = {
   type: "CHANGE_NAME";
   value: string;
 };
