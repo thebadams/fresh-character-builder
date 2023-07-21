@@ -7,31 +7,16 @@ import {
   useArchmageContext,
 } from "../contexts/archmageContext.tsx";
 import ProvideArchmageContext from "../contexts/archmageContext.tsx";
+import CharacterDisplay from "../islands/CharacterDisplay.tsx";
 
 export default function ArchmagePage() {
-  const [currentCharacter, dispatch] = useArchmageContext();
+  // const [currentCharacter, dispatch] = useArchmageContext();
   return (
     <>
-      <ProvideArchmageContext>
-        <p>NAME: {currentCharacter.name}</p>
-        <p>CLASS: {currentCharacter.class}</p>
-        <p>LEVEL: {currentCharacter.level}</p>
-        <p>ABILITIES</p>
-        <ul>
-          <li>STRENGTH: {currentCharacter.abilities.strength}</li>
-          <li>DEXTERITY: {currentCharacter.abilities.dexterity}</li>
-          <li>CONSTITUTION: {currentCharacter.abilities.constitution}</li>
-          <li>INTELLIGENCE: {currentCharacter.abilities.intelligence}</li>
-          <li>WISDOM: {currentCharacter.abilities.wisdom}</li>
-          <li>CHARISMA: {currentCharacter.abilities.charisma}</li>
-        </ul>
-        <p>DESCRIPTION: {currentCharacter.description}</p>
-        <p>PLAYER NAME: {currentCharacter.playerName}</p>
-
-        <div>
-          <Input currentCharacter={currentCharacter} name="name" />
-        </div>
-      </ProvideArchmageContext>
+      <CharacterDisplay />
+      <Input name="name" />
+      <Input name="className" />
+      <Input name="level" />
     </>
   );
 }
