@@ -1,9 +1,4 @@
-import {
-  className,
-  currentCharacter,
-  level,
-  name,
-} from "../states/archmage.state.ts";
+import { currentCharacter } from "../states/archmage.state.ts";
 
 export default function CharacterDisplay() {
   return (
