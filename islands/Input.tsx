@@ -1,4 +1,3 @@
-// deno-lint-ignore-file no-case-declarations
 import { Dispatch } from "preact/hooks";
 import { ArchmageContext } from "../contexts/archmageContext.tsx";
 import IArchmageCharacter from "../types/IArchmageCharacter.ts";
