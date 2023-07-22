@@ -1,4 +1,4 @@
-import Input from "../islands/Input.tsx";
+import Input, { Value } from "../islands/Input.tsx";
 import CharacterDisplay from "../islands/CharacterDisplay.tsx";
 
 export default function ArchmagePage() {
@@ -6,9 +6,16 @@ export default function ArchmagePage() {
   return (
     <>
       <CharacterDisplay />
-      <Input name="name" />
-      <Input name="className" />
-      <Input name="level" />
+      <Input name={Value.name} />
+      <Input name={Value.className} />
+      <Input name={Value.level} />
+      <Input name={Value.description} />
+      <Input name={Value.strength} />
+      <Input name={Value.dexterity} />
+      <Input name={Value.constitution} />
+      <Input name={Value.intelligence} />
+      <Input name={Value.wisdom} />
+      <Input name={Value.charisma} />
     </>
   );
 }
