@@ -80,6 +80,9 @@ export default function Input(props: IInputProps) {
         value={value}
         onInput={(e) => {
           if (value === "Default") {
+            console.log(
+              "Value is Default. Erroneous Implementation In Input.tsx",
+            );
             return;
           }
           value.value = e.currentTarget.value;
